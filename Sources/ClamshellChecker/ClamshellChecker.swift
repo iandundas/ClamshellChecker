@@ -19,6 +19,7 @@ public enum ClamshellChecker {
             .subscribe(on: DispatchQueue.global())
             .map { _ in ClamshellChecker.isLidClosed() }
             .prepend(ClamshellChecker.isLidClosed()) // start immediately with a value instead of waiting 1 second.
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
 
